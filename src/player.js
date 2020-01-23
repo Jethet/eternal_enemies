@@ -48,6 +48,6 @@ Player.prototype.draw = function(){
     this.ctx.fillStyle = 'lightblue';
 
     // fillRect(x, y, width, heitght):
-    this.fillRect(this.x, this.y, this.size, this.size) // using this.size 2 times gives a square size
+    this.ctx.fillRect(this.x, this.y, this.size, this.size) // using this.size 2 times gives a square size
 
 };
