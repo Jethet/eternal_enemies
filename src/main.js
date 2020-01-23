@@ -28,19 +28,39 @@ function main(){
         document.body.appendChild(splashScreen);
         var startButton = splashScreen.querySelector('button');
         startButton.addEventListener('click', function(){
-            console.log("CLICKED START");
+            startGame();
         });
     }
 
     function removeSplashScreen(){
+        splashScreen.remove();   // remove() is HTML method that removes entire element
 
     }
-
+    // Game screen
     function createGameScreen(){
+        var gameScreen = buildDom(`
+        <main class="game container">
+        <header>
+            <div class="lives">
+            <span class="label">Lives:</span>
+            <span class="value"></span>
+            </div>
+            <div class="score">
+            <span class="label">Score:</span>
+            <span class="value"></span>
+            </div>
+        </header>
+        <div class="canvas-container">
+            <canvas></canvas>
+        </div>
+        </main>`);
 
+        document.body.appendChild(gameScreen);
+        return gameScreen;
     }
 
     function removeGameScreen(){
+        game.removeGameScreen();   // this will be a method to remove any game once it is played
 
     }
 
@@ -55,8 +75,12 @@ function main(){
 
     // Setting game state
     function startGame(){
+        removeSplashScreen();
+
+        var gameScreen = createGameScreen();
 
     }
+
     function gameOver(){
 
     }
