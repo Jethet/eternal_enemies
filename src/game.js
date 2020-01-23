@@ -106,6 +106,8 @@ Game.prototype.updateGameStats = function() {};
 Game.prototype.gameOver = function() {
     this.gameIsOver = true;
     console.log("GAME OVER");
+
+    this.startOver(); // the callback function ( gameOver ) passed from main
 };
 
 Game.prototype.removeGameScreen = function() {};
@@ -125,3 +127,7 @@ Game.prototype.checkCollisions = function() {
     }
   }, this);
 };
+
+Game.prototype.passGameOverCallback = function(gameOverFunc){
+    this.startOver = gameOverFunc;
+}

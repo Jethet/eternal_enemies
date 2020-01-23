@@ -8,7 +8,6 @@ function buildDom(htmlString){
     div.innerHTML = htmlString;
 
     return div.children[0];
-
 }
 
 // This runs initial start and call other functions that manage the game
@@ -60,22 +59,35 @@ function main(){
     }
 
     function removeGameScreen(){
-        game.removeGameScreen();   // this will be a method to remove any game once it is played
+        game.gameScreen.remove();
 
     }
 
-    function createGameOverScreen(){
+    function createGameOverScreen(score){
+        gameOverScreen = buildDom(`
+        <main>
+            <h1>Game over</h1>
+            <p>Your score: <span>${score}</span></p>
+            <button>Restart</button>
+        </main>
+        `); // this button needs an event listener
 
+        document.body.appendChild(gameOverScreen);
+        var button = gameOverScreen.querySelector('button');
+        button.addEventListener('click', startGame);
     }
 
 
     function removeGameOverScreen(){
-
+        if (gameOverScreen !== undefined){
+            gameOverScreen.remove();
+        }
     }
 
     // Setting game state
     function startGame(){
         removeSplashScreen();
+        removeGameOverScreen();
 
         game = new Game();  // constructor with properties is in game.js
         game.gameScreen = createGameScreen();   // when game is over, this has to be deleted
@@ -83,12 +95,14 @@ function main(){
         
         //Start the game (function in game.js)
         game.start();
+        game.passGameOverCallback(gameOver);
 
         // End the game
     }
 
     function gameOver(){
-
+        removeGameScreen();
+        createGameOverScreen();
     }
 
     // Initialize the start screen:
