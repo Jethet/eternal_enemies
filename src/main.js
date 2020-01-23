@@ -7,6 +7,7 @@ function buildDom(htmlString){
     var div = document.createElement('div');
     div.innerHTML = htmlString;
 
+    return div.children[0];
 
 }
 
@@ -18,7 +19,17 @@ function main(){
     var gameOverScreen;
 
     function createSplashScreen(){
+        splashScreen = buildDom(`
+        <main>
+        <h1>Eternal Enemies</h1>
+        <button>Start</button>
+        </main>`);
 
+        document.body.appendChild(splashScreen);
+        var startButton = splashScreen.querySelector('button');
+        startButton.addEventListener('click', function(){
+            console.log("CLICKED START");
+        });
     }
 
     function removeSplashScreen(){
