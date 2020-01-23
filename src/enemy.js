@@ -5,7 +5,7 @@ function Enemy(canvas, y, speed) {
     this.ctx = this.canvas.getContext('2d');
 
     this.size = 20;
-    this.x = '';
+    this.x = this.canvas.width + this.size;
     this.y = y;
     this.speed = speed;
 }
@@ -20,10 +20,14 @@ Enemy.prototype.draw = function(){
 
 Enemy.prototype.updatePosition = function(){
     this.x = this.x - this.speed;   // every time the enemy moves, the value is decreased with
-    this.speed = speed;             // the value of speed in every frame
+            // the value of speed in every frame
 
 }
 
+// outside screen = value of x plus value of size of the box (player),
+// with enemy moving from right to left (disappearing out of view on the left)
+
 Enemy.prototype.isInsideScreen = function(){
+    return this.x + this.size > 0;
 
 }

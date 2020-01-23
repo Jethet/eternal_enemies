@@ -3,6 +3,7 @@
 // Constructor for player
 
 function Player(canvas, lives){
+    this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.lives = lives;
     this.size = 100;
@@ -14,7 +15,7 @@ function Player(canvas, lives){
     this.speed = 5;
 }
 
-Player.prototype.setDirection = function(){
+Player.prototype.setDirection = function(direction){
     // increase with -1 for up, +1 for down due to y axis
     if (direction === 'up') this.direction = -1;
     else if (direction === 'down') this.direction = 1;
@@ -45,7 +46,7 @@ Player.prototype.handleScreenCollision = function(){
 Player.prototype.removeLife = function(){};
 
 Player.prototype.draw = function(){
-    this.ctx.fillStyle = 'lightblue';
+    this.ctx.fillStyle = 'green';
 
     // fillRect(x, y, width, heitght):
     this.ctx.fillRect(this.x, this.y, this.size, this.size) // using this.size 2 times gives a square size

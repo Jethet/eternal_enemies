@@ -50,9 +50,56 @@ Game.prototype.start = function(){   // initialize game and canvas: grab element
 
     // Start the game initially
     this.startLoop();
+
 };
 
-Game.prototype.startLoop = function(){};
+Game.prototype.startLoop = function(){
+    var loop = function(){
+        console.log('loop');
+
+    // 1. update state of player, game, enemy: 
+        // a. player was created already; 
+        // b. enemies must be created randomly;
+        if (Math.random() > 0.98){
+            var randomY = this.canvas.height * Math.random();
+            var newEnemy = new Enemy(this.canvas, randomY, 5);
+            this.enemies.push(newEnemy);
+        }
+        // c. collisions of player need to be checked (check all of the enemies);
+        this.checkCollisions();
+
+        // d. update the player and check if he is colliding with the screen
+        this.player.handleScreenCollision();
+
+        // e. update the existing enemies (move them)
+        // f. check if enemies are out of the screen (i.e. create array with enemies
+        // who pass these conditions)
+        this.enemies = this.enemies.filter(function(enemyObj){
+            enemyObj.updatePosition();
+            return enemyObj.isInsideScreen();  // will evaluate to true or false
+        });
+
+    // 2. clear the canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    // 3. update the canvas (draw)
+    //  a. draw the player
+        this.player.draw();
+
+    //  b. draw the enemies
+        this.enemies.forEach(function(enemyObj){
+            enemyObj.draw()
+    })
+
+    // 4. terminate the loop if game is over
+
+    if (!this.gameIsOver){
+        requestAnimationFrame(loop);
+    };
+    }.bind(this);
+    loop();
+};
+
 
 Game.prototype.updateGameStats = function(){};
 
