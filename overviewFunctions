@@ -1,3 +1,4 @@
+MAIN.JS
 function buildDom(htmlString)
 
 function main()
@@ -21,3 +22,17 @@ function startGame(){
  function gameOver()
  
  window.addEventListener('load', main)  ==> the start of the game: loading it
+
+GAME.JS:
+ function Game() ==>  constructor for game
+ Game.prototype.start = function()
+
+ Game.prototype.startLoop = function(){};
+
+Game.prototype.updateGameStats = function(){};
+
+Game.prototype.gameOver = function(){};
+
+Game.prototype.removeGameScreen = function(){};
+
+Game.prototype.checkCollisions = function(){};

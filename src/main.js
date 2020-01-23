@@ -77,8 +77,14 @@ function main(){
     function startGame(){
         removeSplashScreen();
 
-        var gameScreen = createGameScreen();
+        game = new Game();  // constructor with properties is in game.js
+        game.gameScreen = createGameScreen();   // when game is over, this has to be deleted
+                                                // it is now a property of the game object
+        
+        //Start the game (function in game.js)
+        game.start();
 
+        // End the game
     }
 
     function gameOver(){
@@ -88,7 +94,6 @@ function main(){
     // Initialize the start screen:
     createSplashScreen();
 
-    
 }
 
 window.addEventListener('load', main);
