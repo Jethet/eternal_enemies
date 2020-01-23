@@ -15,15 +15,32 @@ function Player(canvas, lives){
 }
 
 Player.prototype.setDirection = function(){
-    // increase with -1 for up, +1 for down due to x and y axis
+    // increase with -1 for up, +1 for down due to y axis
     if (direction === 'up') this.direction = -1;
     else if (direction === 'down') this.direction = 1;
     else if (direction === 'stop') this.direction = 0;
 };
 
-Player.prototype.didCollide = function(){};
+Player.prototype.didCollide = function(){  
 
-Player.prototype.handleScreenCollision = function(){};
+
+};
+
+Player.prototype.updatePosition = function(){
+    this.y = this.y + (this.direction * this.speed);
+    
+};
+
+Player.prototype.handleScreenCollision = function(){
+    this.updatePosition();
+    var screenTop = 0;                      
+    var screenBottom = this.canvas.height;
+
+    if (this.y + this.size > screenBottom) this.direction = -1;
+    else if (this.y < screenTop) this.direction = 1;
+};
+
+
 
 Player.prototype.removeLife = function(){};
 
