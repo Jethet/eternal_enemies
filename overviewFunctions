@@ -1,0 +1,23 @@
+function buildDom(htmlString)
+
+function main()
+    var game;
+    var splashScreen;
+    var gameOverScreen;
+
+    \\ calling function createSplashScreen
+
+function removeSplashScreen()
+
+function createGameScreen()
+function removeGameScreen()
+
+function createGameOverScreen()
+function removeGameOverScreen()
+
+function startGame(){
+        removeSplashScreen()
+
+ function gameOver()
+ 
+ window.addEventListener('load', main)  ==> the start of the game: loading it
